@@ -20,20 +20,26 @@ function callBoth() {
 function moveElements() {
     ball = ball + ballSpeed;
     if(ball > 970) {
-        ballSpeed = -5;
+        ballSpeed = -ballSpeed;
     }
-    else if(ball < 20) {
-        ballSpeed = 5;
+    if (ball < 20) {
+        ballSpeed = -ballSpeed;
     }
 }
 
 function drawElements() {
+    //draw canvas with black background
     canvasContext.fillStyle = "black";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
+    //draw two paddles and position them 
     canvasContext.fillStyle = "white";
     canvasContext.fillRect(0,250,20,120);
     canvasContext.fillStyle = "white";
     canvasContext.fillRect(980,250,20,120);
+
+    //draw a ball 
     canvasContext.fillStyle = 'white';
-	canvasContext.fillRect(ball,300,10,10);
+    canvasContext.beginPath();
+    canvasContext.arc(ball,300,10,0,Math.PI*2,true)
+	canvasContext.fill()
 }
