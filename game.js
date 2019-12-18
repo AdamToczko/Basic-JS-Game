@@ -2,6 +2,8 @@ let canvas;
 let canvasContext;
 let ballX = 50;
 let ballSpeedX = 7;
+let ballY = 50;
+let ballSpeedY = 4;
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
@@ -19,12 +21,21 @@ function callBoth() {
 
 function moveElements() {
     ballX = ballX + ballSpeedX;
-    if(ballX > 970) {
+    ballY = ballY + ballSpeedY;
+
+    if(ballX > 1000) {
         ballSpeedX = -ballSpeedX;
     }
-    if (ballX < 30) {
+    if (ballX < 0) {
         ballSpeedX = -ballSpeedX;
     }
+    if(ballY > 690) {
+        ballSpeedY = -ballSpeedY;
+    }
+    if (ballY < 10) {
+        ballSpeedY = -ballSpeedY;
+    }
+    
 }
 
 function drawElements() {
@@ -40,7 +51,7 @@ function drawElements() {
     //draw a ball 
     canvasContext.fillStyle = 'white';
     canvasContext.beginPath();
-    canvasContext.arc(ballX,300,10,0,Math.PI*2,true)
+    canvasContext.arc(ballX,ballY,10,0,Math.PI*2,true)
     canvasContext.fill()
     
     // draw net
