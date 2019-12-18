@@ -67,29 +67,42 @@ function moveRightPaddle(evt) {
        
     }
 
-function callBoth() {
-	moveElements();
-	drawElements();
-}
-
-function moveElements() {
-    ballX = ballX + ballSpeedX;
-    ballY = ballY + ballSpeedY;
-
-    if(ballX > 1000) {
+    function ballReset() {
         ballSpeedX = -ballSpeedX;
-    }
-    if (ballX < 0) {
-        ballSpeedX = -ballSpeedX;
-    }
-    if(ballY > 690) {
-        ballSpeedY = -ballSpeedY;
-    }
-    if (ballY < 10) {
-        ballSpeedY = -ballSpeedY;
+        ballX = canvas.width/2
+        ballY = canvas.height/2
     }
     
-}
+    
+    function callBoth() {
+        moveElements();
+        drawElements();
+    }
+    
+    function moveElements() {
+        ballX = ballX + ballSpeedX;
+        ballY = ballY + ballSpeedY;
+    
+        if(ballX > 990) {
+            if(ballY > paddleRight && ballY < paddleRight+paddleHeight) {
+                ballSpeedX = -ballSpeedX;
+            } else 
+            {ballReset();}
+        }
+        if (ballX < 10) {
+            if(ballY > paddleLeft && ballY < paddleLeft+paddleHeight) {
+                ballSpeedX = -ballSpeedX;
+            } else 
+            {ballReset();}
+        }
+        if(ballY > 690) {
+            ballSpeedY = -ballSpeedY;
+        }
+        if (ballY < 10) {
+            ballSpeedY = -ballSpeedY;
+        }
+
+    }
 
 function drawElements() {
     //draw canvas with black background
