@@ -1,6 +1,7 @@
 let canvas;
 let canvasContext;
 let ball = 50;
+let ballSpeed = 5;
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
@@ -17,7 +18,13 @@ function callBoth() {
 }
 
 function moveElements() {
-	ball = ball + 5;
+    ball = ball + ballSpeed;
+    if(ball > 970) {
+        ballSpeed = -5;
+    }
+    else if(ball < 20) {
+        ballSpeed = 5;
+    }
 }
 
 function drawElements() {
@@ -26,7 +33,7 @@ function drawElements() {
     canvasContext.fillStyle = "white";
     canvasContext.fillRect(0,250,20,120);
     canvasContext.fillStyle = "white";
-    canvasContext.fillRect(780,250,20,120);
+    canvasContext.fillRect(980,250,20,120);
     canvasContext.fillStyle = 'white';
-	canvasContext.fillRect(ball,100,10,10);
+	canvasContext.fillRect(ball,300,10,10);
 }
