@@ -53,9 +53,10 @@ function moveRightPaddle(evt) {
         keys[evt.keyCode] = true;
      
         // down
+
         if (keys[38]) {
-          paddleRight -= 30;
-        }
+            paddleRight -= 30;
+          }
      
         // up
         if (keys[40]) {
