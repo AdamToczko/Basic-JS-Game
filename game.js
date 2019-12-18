@@ -12,6 +12,9 @@ let paddleRight = 250;
 
 let keys = [];
 
+let leftPlayerScore = 0;
+let rightPlayerScore = 0;
+
 function calculateMousePos(evt) {
 	let rect = canvas.getBoundingClientRect();
 	let root = document.documentElement;
@@ -86,14 +89,18 @@ function moveRightPaddle(evt) {
         if(ballX > 990) {
             if(ballY > paddleRight && ballY < paddleRight+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
-            } else 
-            {ballReset();}
+            } else {
+            ballReset();
+            leftPlayerScore ++;
+            }
         }
         if (ballX < 10) {
             if(ballY > paddleLeft && ballY < paddleLeft+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
-            } else 
-            {ballReset();}
+            } else {
+            ballReset();
+            rightPlayerScore ++;
+            }
         }
         if(ballY > 690) {
             ballSpeedY = -ballSpeedY;
@@ -129,5 +136,13 @@ function drawElements() {
     canvasContext.moveTo(500,0)
     canvasContext.lineTo(500, 700);
     canvasContext.stroke();
+
+    // draw score 
+    canvasContext.font = "22px Arial";
+    canvasContext.fillText("Score:", 472, 20);
+    canvasContext.font = "20px Arial";
+    canvasContext.fillText(leftPlayerScore, 470, 50);
+    canvasContext.font = "20px Arial";
+    canvasContext.fillText(rightPlayerScore, 520, 50);
 }
 
