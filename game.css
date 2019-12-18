@@ -1,0 +1,7 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+    background-image: url('./Images/tennis.jpg');
+    background-size: cover;
+}
