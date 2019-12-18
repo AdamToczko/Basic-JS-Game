@@ -1,7 +1,7 @@
 let canvas;
 let canvasContext;
-let ball = 50;
-let ballSpeed = 5;
+let ballX = 50;
+let ballSpeedX = 7;
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
@@ -18,18 +18,18 @@ function callBoth() {
 }
 
 function moveElements() {
-    ball = ball + ballSpeed;
-    if(ball > 970) {
-        ballSpeed = -ballSpeed;
+    ballX = ballX + ballSpeedX;
+    if(ballX > 970) {
+        ballSpeedX = -ballSpeedX;
     }
-    if (ball < 20) {
-        ballSpeed = -ballSpeed;
+    if (ballX < 30) {
+        ballSpeedX = -ballSpeedX;
     }
 }
 
 function drawElements() {
     //draw canvas with black background
-    canvasContext.fillStyle = "black";
+    canvasContext.fillStyle = "#4a9700";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
     //draw two paddles and position them 
     canvasContext.fillStyle = "white";
@@ -40,6 +40,14 @@ function drawElements() {
     //draw a ball 
     canvasContext.fillStyle = 'white';
     canvasContext.beginPath();
-    canvasContext.arc(ball,300,10,0,Math.PI*2,true)
-	canvasContext.fill()
+    canvasContext.arc(ballX,300,10,0,Math.PI*2,true)
+    canvasContext.fill()
+    
+    // draw net
+    canvasContext.strokeStyle = 'white';
+    canvasContext.beginPath();
+    canvasContext.setLineDash([2, 2]);
+    canvasContext.moveTo(500,0)
+    canvasContext.lineTo(500, 700);
+    canvasContext.stroke();
 }
