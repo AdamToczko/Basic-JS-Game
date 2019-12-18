@@ -89,6 +89,9 @@ function moveRightPaddle(evt) {
         if(ballX > 990) {
             if(ballY > paddleRight && ballY < paddleRight+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
+                //adding angle movemenet depending how the ball was hit 
+                let hitDifR = ballY - (paddleRight+paddleHeight/2)
+                ballSpeedY = hitDifR*0.2
             } else {
             ballReset();
             leftPlayerScore ++;
@@ -97,6 +100,9 @@ function moveRightPaddle(evt) {
         if (ballX < 10) {
             if(ballY > paddleLeft && ballY < paddleLeft+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
+                //adding angle movemenet depending how the ball was hit 
+                let hitDifL = ballY - (paddleLeft+paddleHeight/2)
+                ballSpeedY = hitDifL*0.2
             } else {
             ballReset();
             rightPlayerScore ++;
