@@ -5,6 +5,25 @@ let ballSpeedX = 7;
 let ballY = 50;
 let ballSpeedY = 4;
 
+let paddleLeft = 250;
+const paddleHeight = 120;
+
+let paddleRight = 250;
+
+let keys = [];
+
+function calculateMousePos(evt) {
+	let rect = canvas.getBoundingClientRect();
+	let root = document.documentElement;
+	let mouseX = evt.clientX - rect.left - root.scrollLeft;
+	let mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+		x:mouseX,
+		y:mouseY
+	};
+}
+
+
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
@@ -12,7 +31,40 @@ window.onload = function() {
     let framesPerSecond = 30;
 	setInterval(callBoth, 1000/framesPerSecond);
   
+    canvas.addEventListener('mousemove',
+		function(evt) {
+			let mousePos = calculateMousePos(evt);
+			paddleLeft = mousePos.y - (paddleHeight/2);
+        });
+
 }
+
+window.addEventListener("keydown", moveRightPaddle, false);
+window.addEventListener("keyup", keysReleased, false);
+
+function keysReleased(e) {
+	// mark keys that were released
+	keys[e.keyCode] = false;
+}
+
+function moveRightPaddle(evt) {
+    
+        // store an entry for every key pressed
+        keys[evt.keyCode] = true;
+     
+        // down
+        if (keys[38]) {
+          paddleRight -= 30;
+        }
+     
+        // up
+        if (keys[40]) {
+          paddleRight += 30;
+        }
+     
+        evt.preventDefault();
+       
+    }
 
 function callBoth() {
 	moveElements();
@@ -42,11 +94,13 @@ function drawElements() {
     //draw canvas with black background
     canvasContext.fillStyle = "#4a9700";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
     //draw two paddles and position them 
     canvasContext.fillStyle = "white";
-    canvasContext.fillRect(0,250,20,120);
+    canvasContext.fillRect(0,paddleLeft,20,paddleHeight);
+
     canvasContext.fillStyle = "white";
-    canvasContext.fillRect(980,250,20,120);
+    canvasContext.fillRect(980,paddleRight,20,paddleHeight);
 
     //draw a ball 
     canvasContext.fillStyle = 'white';
@@ -62,3 +116,4 @@ function drawElements() {
     canvasContext.lineTo(500, 700);
     canvasContext.stroke();
 }
+
