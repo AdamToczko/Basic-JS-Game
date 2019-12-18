@@ -12,6 +12,7 @@ let paddleRight = 250;
 
 let keys = [];
 
+const winningScore = 11;
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
 
@@ -71,6 +72,10 @@ function moveRightPaddle(evt) {
     }
 
     function ballReset() {
+        if(leftPlayerScore == winningScore || rightPlayerScore == winningScore) {
+            leftPlayerScore = 0;
+            rightPlayerScore = 0
+        }
         ballSpeedX = -ballSpeedX;
         ballX = canvas.width/2
         ballY = canvas.height/2
@@ -89,23 +94,23 @@ function moveRightPaddle(evt) {
         if(ballX > 990) {
             if(ballY > paddleRight && ballY < paddleRight+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
-                //adding angle movemenet depending how the ball was hit 
+                //adding angle movement depending how the ball was hit 
                 let hitDifR = ballY - (paddleRight+paddleHeight/2)
                 ballSpeedY = hitDifR*0.2
             } else {
-            ballReset();
             leftPlayerScore ++;
+            ballReset();
             }
         }
         if (ballX < 10) {
             if(ballY > paddleLeft && ballY < paddleLeft+paddleHeight) {
                 ballSpeedX = -ballSpeedX;
-                //adding angle movemenet depending how the ball was hit 
+                //adding angle movement depending how the ball was hit 
                 let hitDifL = ballY - (paddleLeft+paddleHeight/2)
                 ballSpeedY = hitDifL*0.2
             } else {
-            ballReset();
             rightPlayerScore ++;
+            ballReset();
             }
         }
         if(ballY > 690) {
