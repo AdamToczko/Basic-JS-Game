@@ -12,9 +12,12 @@ let paddleRight = 250;
 
 let keys = [];
 
-const winningScore = 11;
+let winScreen = false;
+const winningScore = 2;
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
+
+
 
 function calculateMousePos(evt) {
 	let rect = canvas.getBoundingClientRect();
@@ -33,18 +36,31 @@ window.onload = function() {
     canvasContext = canvas.getContext('2d');
 
     let framesPerSecond = 30;
-	setInterval(callBoth, 1000/framesPerSecond);
+    setInterval(callBoth, 1000/framesPerSecond);
+    
+    canvas.addEventListener('mousedown', handleMouseClick);
   
     canvas.addEventListener('mousemove',
 		function(evt) {
 			let mousePos = calculateMousePos(evt);
 			paddleLeft = mousePos.y - (paddleHeight/2);
         });
-
+    
 }
+
+function handleMouseClick(evt) {
+    if(winScreen) { 
+        rightPlayerScore = 0;
+        leftPlayerScore = 0;
+        winScreen = false;
+    }
+} 
+
 
 window.addEventListener("keydown", moveRightPaddle, false);
 window.addEventListener("keyup", keysReleased, false);
+
+
 
 function keysReleased(e) {
 	// mark keys that were released
@@ -52,7 +68,7 @@ function keysReleased(e) {
 }
 
 function moveRightPaddle(evt) {
-    
+        
         // store an entry for every key pressed
         keys[evt.keyCode] = true;
      
@@ -73,8 +89,7 @@ function moveRightPaddle(evt) {
 
     function ballReset() {
         if(leftPlayerScore == winningScore || rightPlayerScore == winningScore) {
-            leftPlayerScore = 0;
-            rightPlayerScore = 0
+            winScreen = true;
         }
         ballSpeedX = -ballSpeedX;
         ballX = canvas.width/2
@@ -88,6 +103,10 @@ function moveRightPaddle(evt) {
     }
     
     function moveElements() {
+        if(winScreen) {
+            return;
+        }
+
         ballX = ballX + ballSpeedX;
         ballY = ballY + ballSpeedY;
     
@@ -123,9 +142,24 @@ function moveRightPaddle(evt) {
     }
 
 function drawElements() {
-    //draw canvas with black background
+    //draw canvas with green background
     canvasContext.fillStyle = "#4a9700";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+    if(winScreen) {
+        canvasContext.font = "30px Arial";
+        canvasContext.fillStyle = "white";
+
+        if(leftPlayerScore = winningScore) {
+			canvasContext.fillText("Left Player Won", 390, 200);
+		} else if(rightPlayerScore = winningScore) {
+			canvasContext.fillText("Right Player Won", 390, 200);
+		}
+
+        canvasContext.fillText("Click mouse to play again", 330, 300);
+        return;
+    }
+
 
     //draw two paddles and position them 
     canvasContext.fillStyle = "white";
@@ -156,4 +190,3 @@ function drawElements() {
     canvasContext.font = "20px Arial";
     canvasContext.fillText(rightPlayerScore, 520, 50);
 }
-
