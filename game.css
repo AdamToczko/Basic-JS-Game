@@ -5,3 +5,7 @@ body {
     background-image: url('./Images/tennis.jpg');
     background-size: cover;
 }
+
+.heading {
+    color: white;
+}
