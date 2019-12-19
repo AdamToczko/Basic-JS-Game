@@ -13,7 +13,7 @@ let paddleRight = 250;
 let keys = [];
 
 let winScreen = false;
-const winningScore = 2;
+const winningScore = 11;
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
 
