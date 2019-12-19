@@ -1,4 +1,4 @@
-Simple tennis paddle game for 2 palyers 
+Simple tennis paddle game for 2 players 
 
 Left paddle operated by mouse movement 
 
