@@ -7,7 +7,7 @@ let ballSpeedY = 4;
 
 let paddleLeft = 250;
 const paddleHeight = 120;
-const paddleSpeed = 30
+const paddleSpeed = 40
 
 let paddleRight = 250;
 
@@ -23,10 +23,10 @@ let rightPlayerScore = 0;
 function calculateMousePos(evt) {
 	let rect = canvas.getBoundingClientRect();
 	let root = document.documentElement;
-	let mouseX = evt.clientX - rect.left - root.scrollLeft;
+	// let mouseX = evt.clientX - rect.left - root.scrollLeft; X movement not needed in this game 
 	let mouseY = evt.clientY - rect.top - root.scrollTop;
 	return {
-		x:mouseX,
+		// x:mouseX, 
 		y:mouseY
 	};
 }
@@ -62,7 +62,6 @@ window.addEventListener("keydown", moveRightPaddle, false);
 window.addEventListener("keyup", keysReleased, false);
 
 
-
 function keysReleased(e) {
 	// mark keys that were released
 	keys[e.keyCode] = false;
@@ -76,14 +75,14 @@ function moveRightPaddle(evt) {
         // up
         
         if (keys[38]) {
-            if(paddleRight - paddleSpeed > -paddleSpeed) {
+            if(paddleRight - paddleSpeed > -40) {
                 paddleRight -= paddleSpeed;
             }
           }
      
         // down
         if (keys[40]) {
-            if(paddleRight + paddleSpeed < 590) {
+            if(paddleRight + paddleSpeed < 620) {
           paddleRight += paddleSpeed;
             }
         }
