@@ -72,15 +72,20 @@ function moveRightPaddle(evt) {
         // store an entry for every key pressed
         keys[evt.keyCode] = true;
      
-        // down
-
+        // up
+        console.log(paddleRight)
+        console.log(keys)
         if (keys[38]) {
-            paddleRight -= 30;
+            if(paddleRight - 30 > -30) {
+                paddleRight -= 30;
+            }
           }
      
-        // up
+        // down
         if (keys[40]) {
+            if(paddleRight + 30 < 590) {
           paddleRight += 30;
+            }
         }
      
         evt.preventDefault();
