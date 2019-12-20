@@ -7,6 +7,7 @@ let ballSpeedY = 4;
 
 let paddleLeft = 250;
 const paddleHeight = 120;
+const paddleSpeed = 30
 
 let paddleRight = 250;
 
@@ -73,18 +74,17 @@ function moveRightPaddle(evt) {
         keys[evt.keyCode] = true;
      
         // up
-        console.log(paddleRight)
-        console.log(keys)
+        
         if (keys[38]) {
-            if(paddleRight - 30 > -30) {
-                paddleRight -= 30;
+            if(paddleRight - paddleSpeed > -paddleSpeed) {
+                paddleRight -= paddleSpeed;
             }
           }
      
         // down
         if (keys[40]) {
-            if(paddleRight + 30 < 590) {
-          paddleRight += 30;
+            if(paddleRight + paddleSpeed < 590) {
+          paddleRight += paddleSpeed;
             }
         }
      
