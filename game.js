@@ -1,20 +1,20 @@
 let canvas;
 let canvasContext;
 let ballX = 50;
-let ballSpeedX = 7;
+let ballSpeedX = 12;
 let ballY = 50;
-let ballSpeedY = 4;
+let ballSpeedY = 9;
 
 let paddleLeft = 250;
 const paddleHeight = 120;
-const paddleSpeed = 40
+const paddleSpeed = 50
 
 let paddleRight = 250;
 
 let keys = [];
 
 let winScreen = false;
-const winningScore = 11;
+const winningScore = 2;
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
 
@@ -154,9 +154,9 @@ function drawElements() {
         canvasContext.font = "30px Arial";
         canvasContext.fillStyle = "white";
 
-        if(leftPlayerScore = winningScore) {
+        if(leftPlayerScore >= winningScore) {
 			canvasContext.fillText("Left Player Won", 390, 200);
-		} else if(rightPlayerScore = winningScore) {
+		} else if(rightPlayerScore >= winningScore) {
 			canvasContext.fillText("Right Player Won", 390, 200);
 		}
 
